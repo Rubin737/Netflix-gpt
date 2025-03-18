@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.bg-image{
+  @apply relative rounded-3xl h-[600px] bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/42a0bce6-fc59-4c1c-b335-7196a59ae9ab/web_auto_scroll/IN-en-20250303-TRIFECTA-5a51a3d1-4e37-441d-bc08-3597ab68c7b1_large.jpg')] bg-cover bg-center;
+}
+
+.bg-image::before {
+  @apply absolute inset-0 rounded-3xl bg-black opacity-50 content-[''] z-0;
+}
+.button-transitions{
+  @apply transition duration-300 hover:bg-red-800 cursor-pointer hover:scale-105;
+}
