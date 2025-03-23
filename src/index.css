@@ -1,12 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  --font-display: "Oswald", "sans-serif";
+  --font-poppins: "Poppins", sans-serif; 
+}
+
+
 .bg-image{
-  @apply relative rounded-3xl h-[600px] bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/42a0bce6-fc59-4c1c-b335-7196a59ae9ab/web_auto_scroll/IN-en-20250303-TRIFECTA-5a51a3d1-4e37-441d-bc08-3597ab68c7b1_large.jpg')] bg-cover bg-center;
+  @apply relative rounded-3xl h-[700px] bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/42a0bce6-fc59-4c1c-b335-7196a59ae9ab/web_auto_scroll/IN-en-20250303-TRIFECTA-5a51a3d1-4e37-441d-bc08-3597ab68c7b1_large.jpg')] bg-cover bg-center;
+}
+.signin-image{
+  @apply relative rounded-3xl h-[700px] bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/f6e7f6df-6973-46ef-b98f-12560d2b3c69/web_tall_panel/IN-en-20250317-TRIFECTA-perspective_d3bd14de-3c51-4227-9244-f14c89469189_large.jpg')] bg-cover bg-center;
+}
+
+.signin-image::before {
+  @apply absolute inset-0 rounded-3xl bg-black opacity-50 content-[''] z-0;
 }
 
 .bg-image::before {
   @apply absolute inset-0 rounded-3xl bg-black opacity-50 content-[''] z-0;
 }
 .button-transitions{
-  @apply transition duration-300 hover:bg-red-800 cursor-pointer hover:scale-105;
+  @apply transition duration-300 hover:underline cursor-pointer 
+}
+.hero-container{
+  @apply  flex relative flex-col gap-y-5 justify-center  items-center rounded-xl;
+}
+.signup-p{
+  @apply text-lg font-poppins font-bold text-white;
+}
+.signup-input{
+  @apply  text-lg px-2 py-2 text-black bg-white outline-0 focus:bg-red-200  font-display font-bold;
+}
+.signup-error{
+  @apply text-lg font-display font-bold text-red-500;
+}
+.eye-icon{
+  @apply w-[24px] absolute right-5 cursor-pointer ;
+}
+.button-style{
+  @apply font-poppins text-xl font-bold cursor-pointer;
 }
