@@ -8,6 +8,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './utils/firebase'
 import { addUser, removeUser } from './utils/Slices/userslice'
 import Browse from './Appcomponents/Browse'
+import SearchGPT from './Appcomponents/BrowseComponents/SearchGPT'
 
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     
-      <section className='px-10 mt-5 relative'>
+      <section className='px-5 mt-5 relative'>
       <Header/>
       <Outlet/>
       </section>
@@ -59,6 +60,10 @@ export const appRouter = createBrowserRouter([
       {
         path:'/browse',
         element:<Browse/>
+      },
+      {
+        path:'/searchmovies',
+        element:<SearchGPT/>
       },
 
     ]

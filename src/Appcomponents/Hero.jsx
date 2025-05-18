@@ -1,7 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { languagesList } from '@/utils/languagesList';
+import { useSelector } from 'react-redux';
 const Hero = () => {
+
+  const languageKey = useSelector((store)=>store.language.lang);
+
   return (
     <section>
       <div className='bg-image hero-container'>
@@ -10,7 +14,7 @@ const Hero = () => {
           <p className='text-xl text-white relative z-[50]'>Ready to watch? Enter your email to create or restart your membership.</p>
           <div className='flex items-center bg-red-500 px-5 gap-x-2 py-2 rounded-lg relative z-[50] button-transitions'>
             <img className='w-[20px] h-[20px] object-center' src="https://cdn-icons-png.flaticon.com/128/14025/14025507.png" alt="" />
-            <Link to={'/signup'}><p className='text-white font-bold text-xl'>Get Started</p></Link>
+            <Link to={'/signup'}><p className='text-white font-bold text-xl'>{languagesList[languageKey].start}</p></Link>
           </div>     
           
       </div>

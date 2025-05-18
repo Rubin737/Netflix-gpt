@@ -6,7 +6,7 @@ import { auth } from '../utils/firebase';
 import { Eye, EyeOffIcon } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '@/utils/Slices/userslice';
-
+import { languagesList } from '@/utils/languagesList';
 
 const SignUp = () => {
  
@@ -21,8 +21,8 @@ const SignUp = () => {
   const dispatch = useDispatch();  
   
   const user = useSelector((store)=>store.user);
-  // console.log(user)
-  
+  const languageKey = useSelector((store)=>store.language.lang);
+    
 
   const handleSignUpButton = ()=>{
     setSignIn(!signIn);
@@ -70,7 +70,6 @@ const SignUp = () => {
         updateProfile(user, {
           displayName: nameRef, photoURL: "https://cdn-icons-png.flaticon.com/128/2173/2173478.png"
         }).then(() => {
-         console.log(auth.currentUser)
          const{displayName,email,photoURL} = auth.currentUser
          dispatch(addUser({displayName:displayName,email:email,photoURL:photoURL}))
          
@@ -111,18 +110,18 @@ const SignUp = () => {
           
           {
             signIn === true &&<>
-              <p className='signup-p'>Enter your name</p>
+              <p className='signup-p'>{languagesList[languageKey].name}</p>
               <input ref={name} className='signup-input' type="text" placeholder='Your name' />
               <p className='signup-error'>{validate.name}</p>
             </>
           }
           
-          <p className='signup-p'>Enter your email</p>
+          <p className='signup-p'>{languagesList[languageKey].mail}</p>
           <input ref={mail} autoComplete='username' className='signup-input' type="email" placeholder='Your email' />
           <p className='signup-error'>{validate.mail}</p>
           
 
-          <p className='signup-p relative z-[50]'>Enter your password</p>
+          <p className='signup-p relative z-[50]'>{languagesList[languageKey].Password}</p>
           <div className='flex items-center relative'>
             <input  ref={password} autoComplete='current-password' className=' bg-white signup-input w-full' type={`${showPassword?'text':'password'}`} placeholder=' Your password' />
             <Eye  className={`eye-icon ${showPassword?'block':'hidden'}`}
@@ -156,4 +155,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignUp 
