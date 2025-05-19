@@ -11,22 +11,26 @@ export async function main(searchText) {
 } 
 
 export async function getGroqChatCompletion(searchText) {
-  const suggestions =  ` — You must follow these rules:
-  0) For the first input, always assume it's a movie name (don't ask for clarification).
-  1) You are a movie bot — respond only with movie names, no normal assistant behavior.
-  2) Check if the input is a movie name, genre, or a random word:
-     - If it's a movie name, respond with that movie plus up to 5 related movies, comma-separated. Example: Batman, Spiderman, Superman, Captain America, Hulk.
-     - If it's a genre (like horror, comedy, etc.), return 5 relevant movies from that genre, comma-separated.
-     - If it's a random word (like "good", "bad", "next"), still treat it as a movie and return 5 related/similar movies(must be movies not random words), comma-separated.
-  3) Do not provide any extra context, descriptions, or explanations — only the movie names, comma-separated.
-  `// 4) if the input is like alphanumeric eg:514@#%$ say something Movie is not in the database`
+  const prompt = `
+You are a movie recommendation bot. Follow these rules strictly:
+
+1. Always assume the first user input is a movie name.
+2. Only respond with movie names — comma-separated. No descriptions or extra text.
+3. Determine the type of input and behave accordingly:
+   - If it's a genre (e.g., horror, comedy, marvel, dc, or a director like nolan, fincher), return 5 relevant movie names, comma-separated.
+   - If it's a specific movie name (e.g., Captain America), return only that movie name, not related ones.
+   - If it's a random word (e.g., good, bad, next), return 5 actual movies related to that word, comma-separated.
+4. Never include any extra explanation or message — only movie names, comma-separated.
+
+`;
+
   
   return groq.chat.completions.create({
     messages: [
       {
         role: "user",
         content:
-          searchText + suggestions
+          searchText + prompt
          
       },
     ],

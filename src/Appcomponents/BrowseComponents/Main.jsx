@@ -35,13 +35,13 @@ const Main = () => {
     return ()=> window.removeEventListener('scroll',handleScroll)
   },[])
 
+  const opacity = Math.max(1 - scroll / 1000, 0);
+  const translateY = scroll * 0.3;
   
   const movies = useSelector((store) => store.movie.popularMovies);
   
   const[change,setChange] = useState(3);
   
-  const opacity = Math.max(1 - scroll / 1000, 0);
-  const translateY = scroll * 0.3;
 
   
   const handleVideoChange = (index)=>{    

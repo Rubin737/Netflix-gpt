@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     
-      <section className='px-5 mt-5 relative'>
+      <section className='px-5 mt-5  relative'>
       <Header/>
       <Outlet/>
       </section>
