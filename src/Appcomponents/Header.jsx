@@ -76,11 +76,10 @@ const handleHamburgerMenu = ()=>{
           user && 
           <div className='flex items-center gap-x-2 xl:gap-x-5 '>
           
-          <div className='flex items-center md:gap-x-1 lg:gap-x-2'>
+          <div className='flex items-center md:gap-x-1 lg:gap-x-2 cursor-pointer' onClick={()=>handleSearchBar()}>
              <h1 className='font-bold text-[12px]   md:text-sm  font-poppins  text-yellow-400 '>{switchPage ? `${languagesList[languageKey].searchInBrowse}` : `${languagesList[languageKey].home}`}</h1>
               
-              <img src={switchPage ? AI_IMG : HOME_IMG} alt="" className='w-5 ml-1 xl:ml-2  hover:scale-110 cursor-pointer' 
-              onClick={()=>handleSearchBar()}
+              <img src={switchPage ? AI_IMG : HOME_IMG} alt="" className='w-5 ml-1 xl:ml-2  hover:scale-110 cursor-pointer'  
               />
                   
           </div>

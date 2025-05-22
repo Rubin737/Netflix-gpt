@@ -9,6 +9,7 @@ export const useFetchFavorites = ()=>{
     useEffect(()=>{
         let isMounted = true;
         const fetchTopRated = async()=>{
+           
             try{
             
                 const response = await fetch(FAV_MOVIES,OPTIONS);
@@ -23,16 +24,14 @@ export const useFetchFavorites = ()=>{
             
             }
             catch(error){
-                console.log(error)
+              // error intentionally ignored
             }
         }
+        
         if(!fav) fetchTopRated()
         return()=>{
             isMounted = false;        
         }
     },[dispatch,fav])
-
-
-    
 
 }

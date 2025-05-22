@@ -14,7 +14,7 @@ const Secondary = () => {
 
   const topRated = useSelector((store)=>store.movie.topRatedMovies);
   const fav = useSelector((store)=>store.movie.favoriteMovies);
-  console.log(fav)
+ 
   const trendingMovies = useSelector((store)=>store.movie.trendingMovies);
   const trending = trendingMovies ? shuffleArray([...trendingMovies]) : [];
 

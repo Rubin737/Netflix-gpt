@@ -23,7 +23,7 @@ export const useFetchTrending = ()=>{
             
             }
             catch(error){
-                console.log(error)
+              // error intentionally ignored
             }
         }
         if(!trend) fetchTopRated()

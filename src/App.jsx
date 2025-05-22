@@ -1,15 +1,17 @@
 import Header from './Appcomponents/Header'
-import React, { useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import Hero from './Appcomponents/Hero'
-import SignUp from './Appcomponents/SignUp'
 import { createBrowserRouter, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch} from 'react-redux'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './utils/firebase'
 import { addUser, removeUser } from './utils/Slices/userslice'
-import Browse from './Appcomponents/Browse'
-import SearchGPT from './Appcomponents/BrowseComponents/SearchGPT'
 import ErrorPage from './Appcomponents/ErrorPage'
+import ShimerUi from './Appcomponents/BrowseComponents/ShimerUi'
+
+const Browse = lazy(()=>import('./Appcomponents/Browse'));
+const SignUp = lazy(()=>import('./Appcomponents/SignUp'));
+const SearchGPT = lazy(()=>import('./Appcomponents/BrowseComponents/SearchGPT'))
 
 
 const App = () => {
@@ -56,15 +58,15 @@ export const appRouter = createBrowserRouter([
       },
       {
         path:'/signup',
-        element:<SignUp/>
+        element:<Suspense fallback={<ShimerUi/>}><SignUp/></Suspense>
       },
       {
         path:'/browse',
-        element:<Browse/>
+        element:<Suspense fallback={<ShimerUi/>}><Browse/></Suspense>
       },
       {
         path:'/searchmovies',
-        element:<SearchGPT/>
+        element:<Suspense fallback={<ShimerUi />}><SearchGPT /></Suspense>
       },
 
     ],

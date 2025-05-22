@@ -27,7 +27,7 @@ export const useFetchNowPlay = ()=>{
          
          }
          catch(eror){
-          console.log(eror)
+           // error intentionally ignored
          }
          
         };

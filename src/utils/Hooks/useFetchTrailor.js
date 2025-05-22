@@ -27,7 +27,7 @@ export const useFetchTrailor = (movieId) => {
           throw new Error("Cant fetch");
         }
       } catch (error) {
-        console.log(error);
+        // error intentionally ignored
       }
     }
     fetchTrailor();

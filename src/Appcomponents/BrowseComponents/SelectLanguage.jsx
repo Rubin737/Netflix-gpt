@@ -16,7 +16,7 @@ const SelectLanguage = () => {
    
 
 return (
-    <select name="Languages" className='text-black md:text-white font-bold font-poppins  md:px-0 md:py-0 py-1 rounded-sm  bg-blue-400 md:bg-neutral outline-0 text-[10px] lg:-ml-3 xl:-ml-0 xl:text-lg'
+    <select name="Languages" className='text-black md:text-white font-bold font-poppins  md:px-0 md:py-0 py-1 rounded-sm lg:text-sm lg:-ml-0  lg:text-white   bg-blue-400 md:bg-neutral outline-0 text-[10px] lg:bg-none xl:-ml-0'
     ref={languageRef}
     onChange={()=>handleLanguageOption()}
     >

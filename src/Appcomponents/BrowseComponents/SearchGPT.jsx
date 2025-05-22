@@ -1,5 +1,5 @@
 import { languagesList } from '@/utils/languagesList';
-import React, { useRef, useState} from 'react'
+import React, { useRef} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { main } from '@/utils/groqiAi';
 import { OPTIONS } from '@/utils/constants';
@@ -8,21 +8,6 @@ import MovieList from './MovieList';
 import { shuffleArray } from '@/utils/ShuffleArray';
 
 const SearchGPT = () => {
-
-  // const [scroll,setScroll] = useState(1);
-  // console.log(scroll)
-
-  // useEffect(()=>{
-  //   const handleScroll = ()=>{
-  //     setScroll(window.scrollY)
-  //   }
-  //   window.addEventListener('scroll',handleScroll);
-  //   return ()=>window.removeEventListener('scroll',handleScroll)
-  // },[])
-
-  
-
-  
 
   const languageKey = useSelector((store)=>store.language.lang);  
   const movies = useSelector((store)=>store.ai.movies)
@@ -46,7 +31,7 @@ const SearchGPT = () => {
   const handleSearchResults = async()=>{
 
     const getResult = await main(searchText.current.value);
-    console.log(getResult)
+  
     const movies = getResult.split(',').map(items=>items.trim()).filter(Boolean);
   
     const movieInfo = movies.map((movieName)=>getMoviesFromTMDB(movieName));

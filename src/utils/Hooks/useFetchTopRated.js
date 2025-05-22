@@ -24,7 +24,7 @@ export const useFetchTopRated = ()=>{
             
             }
             catch(error){
-                console.log(error)
+                //
             }
         }
         if(!top) fetchTopRated();
