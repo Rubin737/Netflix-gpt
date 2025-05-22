@@ -36,4 +36,5 @@ export const POPCORN_IMG = "https://cdn-icons-png.flaticon.com/128/2809/2809591.
 export const ALTERNATE_VIDEO_KEY = "GCdwKhTtNNw";
 export const HAM_IMG = 'https://cdn-icons-png.flaticon.com/128/11208/11208305.png'
 export const ARROW = "https://cdn-icons-png.flaticon.com/128/9692/9692032.png";
+export const CLOSE = "https://cdn-icons-png.flaticon.com/128/14035/14035561.png";
 

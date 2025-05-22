@@ -5,7 +5,7 @@
  import { useSelector } from 'react-redux';
  import { useState } from 'react';
  import SelectLanguage from './BrowseComponents/SelectLanguage';
- import { AI_IMG, HAM_IMG, HOME_IMG, LOGOUT_IMG, NETFLIX_LOGO } from '@/utils/constants';
+ import { AI_IMG, CLOSE, HAM_IMG, HOME_IMG, LOGOUT_IMG, NETFLIX_LOGO } from '@/utils/constants';
  import { languagesList } from '@/utils/languagesList';
  
 
@@ -24,8 +24,7 @@ const Header = () => {
 
   useEffect(() => {
     if (location.pathname === '/browse') {
-      setSwitchPage(true);
-
+      setSwitchPage(true)
     } else if (location.pathname === '/searchmovies') {
       setSwitchPage(false);
     }
@@ -85,7 +84,7 @@ const handleHamburgerMenu = ()=>{
               />
                   
           </div>
-          <img src={HAM_IMG} onClick={handleHamburgerMenu} alt="HAM" className='w-8 h-8 block lg:hidden align-middle'/>
+          <img src={ham?CLOSE:HAM_IMG} onClick={handleHamburgerMenu} alt="HAM" className='w-8 h-8 block lg:hidden align-middle'/>
           
           <div className=' hidden lg:flex gap-x-2 items-center'>
             <img src={user.photoURL} className='w-[20px] lg:w-[30px]' alt=""/>
