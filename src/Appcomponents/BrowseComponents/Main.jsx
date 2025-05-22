@@ -1,6 +1,6 @@
 import { useFetchNowPlay } from '@/utils/Hooks/useFetchNowPlay'
 import React from 'react'
-import MainVedio from './mainVedio';
+import MainVedio from '../BrowseComponents/MainVedio';
 import { useSelector } from 'react-redux';
 import { GOOGLE_SEARCH, MOVIE_ICON, PLAY_ICON, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 import { IMG_PATH } from '@/utils/constants';
