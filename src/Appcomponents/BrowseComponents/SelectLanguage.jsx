@@ -11,12 +11,12 @@ const SelectLanguage = () => {
     
     const handleLanguageOption = ()=>{
      dispatch(changeLanguage(languageRef.current.value))
-    }
+  }
 
    
 
-  return (
-    <select name="Languages" className='text-white font-bold font-poppins outline-blue-300 focus'
+return (
+    <select name="Languages" className='text-black md:text-white font-bold font-poppins  md:px-0 md:py-0 py-1 rounded-sm  bg-blue-400 md:bg-neutral outline-0 text-[10px] lg:-ml-3 xl:-ml-0 xl:text-lg'
     ref={languageRef}
     onChange={()=>handleLanguageOption()}
     >
@@ -26,7 +26,7 @@ const SelectLanguage = () => {
                 <option 
                 key={lang.identifier}
                 value={lang.identifier}
-                className='text-black bg-blue-200 px-5  text-sm border-amber-200 font-poppins'
+                className='text-black bg-blue-200   text-[8px] xl:text-sm  border-amber-200 font-poppins'
                 >{lang.language}</option>
             )
         })
@@ -34,5 +34,4 @@ const SelectLanguage = () => {
     </select>
   )
 }
-
 export default SelectLanguage

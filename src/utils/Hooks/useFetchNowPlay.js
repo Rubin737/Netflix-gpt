@@ -1,17 +1,20 @@
 import { useEffect } from "react";
 import { API_URL,OPTIONS } from "../constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nowPlayingMovies } from "../Slices/movieSlice";
 
 export const useFetchNowPlay = ()=>{
 
     const dispatch = useDispatch();
+    const nowPlaying = useSelector((store) => store.movie.popularMovies);    
     
-    let isMouted = true;
     
-
+    
     useEffect(()=>{
-       const fetchData = async () => {
+      
+      let isMounted = true;
+      
+      const fetchData = async () => {
          
          try{
           const response = await fetch(API_URL, OPTIONS);
@@ -20,20 +23,22 @@ export const useFetchNowPlay = ()=>{
           }
           const data = await response.json();
 
-         if(isMouted) dispatch(nowPlayingMovies(data.results));
+          if(isMounted) dispatch(nowPlayingMovies(data.results));
          
          }
          catch(eror){
           console.log(eror)
          }
          
-       };
-        fetchData();
-
+        };
         
-    },[])
+        if(!nowPlaying) fetchData();
+        return()=>{
+          isMounted = false;
+        }
+        
+    },[nowPlaying,dispatch])
     
-    return()=>isMouted = false;
    
     
 }

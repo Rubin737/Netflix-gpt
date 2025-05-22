@@ -5,21 +5,21 @@ const aiSlice = createSlice({
     name : 'ai',
     initialState:{
         movies:null,
-        bgClr:null
-        //moviesName : null
+        bgClr:null,
+        online:null,
     },
     reducers:{
-        addTMDBMovies:(state,action)=>{
-            //const {movies,filtered} = action.payload;
+        addTMDBMovies:(state,action)=>{    
             state.movies = action.payload;
-            //state.moviesName = movies;
-
         },
         changeBgClr:(state,action)=>{
             state.bgClr = action.payload
+        },
+        checkOnline:(state,actiom)=>{
+            state.online = actiom.payload;
         }
 
     }
 })
-export const {addTMDBMovies,changeBgClr} = aiSlice.actions
+export const {addTMDBMovies,changeBgClr,checkOnline} = aiSlice.actions
 export default aiSlice.reducer;

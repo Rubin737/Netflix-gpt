@@ -3,8 +3,8 @@ import { useFetchTrailor } from '@/utils/Hooks/useFetchTrailor'
 import { useSelector } from 'react-redux'
 import ReactPlayer from 'react-player'
 import { useRef } from 'react';
-import ShimerUi from './ShimerUi';
 import { youtube } from '@/utils/youtubeConfig';
+import { ALTERNATE_VIDEO_KEY, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 
 
 const MainVedio = ({movieId}) => {
@@ -17,11 +17,11 @@ const MainVedio = ({movieId}) => {
   const trailer = useSelector((store)=>store.movie?.trailerVideos);
  
   return (
-    <section className='w-full h-full relative rounded-3xl'>
+    <section className='w-full h-full relative rounded-none xl:rounded-3xl'>
       
-        <div className="absolute inset-0 w-full h-full pointer-events-none rounded-3xl overflow-hidden">
+        <div className="absolute inset-0 w-full h-full pointer-events-none xl:rounded-3xl overflow-hidden xl:mt-10 mt-2">
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${trailer?.key?trailer?.key:'uhkDkurK0Zg'}`}
+          url={`${YOUTUBE_VIDEO_URL}${trailer?.key?trailer?.key:ALTERNATE_VIDEO_KEY}`}
           playing={true}
           controls={false}
           muted={true}

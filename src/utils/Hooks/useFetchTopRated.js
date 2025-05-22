@@ -1,13 +1,14 @@
 import { useEffect } from "react"
 import { OPTIONS, TOP_RATED } from "../constants"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTopRatedMovies } from "../Slices/movieSlice";
 
 export const useFetchTopRated = ()=>{
     const dispatch = useDispatch()
-    let isMounted = true;
-
+    const top = useSelector((store) => store.movie.topRatedMovies);
+    
     useEffect(()=>{
+        let isMounted = true;
         const fetchTopRated = async()=>{
             try{
             
@@ -26,10 +27,13 @@ export const useFetchTopRated = ()=>{
                 console.log(error)
             }
         }
-        fetchTopRated()
-    },[])
+        if(!top) fetchTopRated();
+        return ()=>{
+            isMounted = false;
+        }
+    },[dispatch,top])
 
 
-    return ()=> isMounted = false
+   
 
 }

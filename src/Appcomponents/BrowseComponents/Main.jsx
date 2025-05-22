@@ -2,7 +2,7 @@ import { useFetchNowPlay } from '@/utils/Hooks/useFetchNowPlay'
 import React from 'react'
 import MainVedio from './mainVedio';
 import { useSelector } from 'react-redux';
-import { MOVIE_ICON, PLAY_ICON } from '@/utils/constants';
+import { GOOGLE_SEARCH, MOVIE_ICON, PLAY_ICON, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 import { IMG_PATH } from '@/utils/constants';
 import ShimerUi from './ShimerUi';
 import { useState,useEffect } from 'react';
@@ -11,10 +11,14 @@ import { useState,useEffect } from 'react';
 
 const Main = () => {
   
-  useFetchNowPlay();  
-
-  const [scroll,setScroll] = useState(1);
+  useFetchNowPlay();
   
+  const movies = useSelector((store) => store.movie.popularMovies);
+  const trailer = useSelector((store)=>store.movie.trailerVideos);
+  
+  const[change,setChange] = useState(3);    
+  const [scroll,setScroll] = useState(1);
+
   useEffect(()=>{
     
     const interval = setInterval(()=>{
@@ -36,28 +40,29 @@ const Main = () => {
   },[])
 
   const opacity = Math.max(1 - scroll / 1000, 0);
-  const translateY = scroll * 0.3;
+  const translateY = 0;
   
-  const movies = useSelector((store) => store.movie.popularMovies);
   
-  const[change,setChange] = useState(3);
   
-
-  
-  const handleVideoChange = (index)=>{    
+  const handleVideoChange = (index)=>{
+          
       setChange(index)
+  }
+
+  const handleNavigation = (e,title)=>{
+    e.preventDefault();
+    const gSearch = GOOGLE_SEARCH + encodeURIComponent(title);
+    window.open(gSearch,'_blank')
+
   }
  
   
   if (!movies) return <ShimerUi/>;
 
   const cards = movies.slice(1,6);
-  
-
   const mainMovie = cards[change];
-  
-
   const year = mainMovie.release_date.split('-')[0];
+  const overView = mainMovie.overview.slice(0,200) + '....';
 
   const languageMap = {
     en: 'English',
@@ -73,34 +78,38 @@ const Main = () => {
 
   return (
     <section className='relative aspect-video w-full  mb-5'
-    style={
+     style={
+
+         {    transform: `translateY(${translateY}px)`,
+              opacity: opacity < 0 ? 0 : opacity,
+              transition: 'transform 0.1s, opacity 0.1s ease-out',
       
-     {    transform: `translateY(${translateY}px)`,
-          opacity: opacity < 0 ? 0 : opacity,
-          transition: 'transform 0.1s, opacity 0.1s ease-out',
-      
-      }
-    }
+              }
+          }
     >
-      <div className=' flex  flex-col z-10 gap-y-5 absolute text-white top-[35%] left-10'>
-        <h1 className='font-bold text-indigo-500 text-5xl font-poppins'>{mainMovie.title}</h1>
-        <p className='font-bold text-lg font-poppins '>
+      <div className=' flex  flex-col z-10 gap-y-2 md:gap-y-5 absolute text-white top-10 left-2   md:top-[15%] lg:top[50%] xl:left-10'>
+        <h1 className='font-bold text-indigo-500 text-sm lg:text-4xl md:text-4xl xl:text-5xl font-poppins'>{mainMovie.title}</h1>
+        <p className='font-bold sm:text-[12px] md:text-lg lg:text-xl xl:text-lg font-poppins '>
           {year} . <strong className='text-slate-400'>{language ? language : mainMovie.original_language}</strong>
         </p>
-        <p className='text-sm font-poppins w-[50%]'>{mainMovie.overview}</p>
+        <p className='text-[8px] md:text-[14px] lg:text-[14px] xl:text-lg w-[300px] md:w-[500px] lg:w-[500px] xl:w-[50%] font-poppins '>{overView}</p>
         
-        <div className='flex gap-x-5'>
-          <div className='title-button bg-white'>
-            <img src={PLAY_ICON} width={30} alt="" />
-            <button>Play</button>
+        <div className='flex gap-x-5 cursor-pointer'>
+          <a href={`${YOUTUBE_VIDEO_URL+trailer?.key}`} target='_blank'>
+            <div className='title-button bg-white'>
+            <img src={PLAY_ICON} className='w-3 md:w-[20px] xl:w-[30px]' alt="" />
+            <button className='text-[10px] md:text-sm xl:text-lg'>Play</button>
           </div>
+          </a>
+          <a href="#" onClick={(e)=>handleNavigation(e,mainMovie.title)} >
           <div className='title-button bg-slate-400 opacity-50'>
-            <img src={MOVIE_ICON} width={20} alt="" />
-            <button>Movie Info</button>
+            <img src={MOVIE_ICON} className='w-2 md:w-5' alt="" />
+            <button className='text-[10px] md:text-sm xl:text-lg'>Movie Info</button>
           </div>
+          </a>
         </div>
 
-        <div className='flex gap-x-5 '>
+        <div className='flex  md:gap-x-5 md:-mt-26 lg:mt-0 '>
           {cards.map((items,index) => {
             return (
               <img key={items.title}

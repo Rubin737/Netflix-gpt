@@ -7,9 +7,10 @@ import { Eye, EyeOffIcon } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser } from '@/utils/Slices/userslice';
 import { languagesList } from '@/utils/languagesList';
+import { findImage } from '@/utils/findImage';
+
 
 const SignUp = () => {
- 
   const [signIn,setSignIn] = useState(true);
   const[errorMsg,setErrorMessage] = useState('')  
   const mail = useRef(null);
@@ -20,7 +21,6 @@ const SignUp = () => {
   const [showPassword,setShowPassword] = useState(false);
   const dispatch = useDispatch();  
   
-  const user = useSelector((store)=>store.user);
   const languageKey = useSelector((store)=>store.language.lang);
     
 
@@ -65,17 +65,20 @@ const SignUp = () => {
       createUserWithEmailAndPassword(auth,emailRef,passwordRef)
       .then((userCredential) => {
         
-        const user = userCredential.user
+        const user = userCredential.user;
+        
+        const imageUrl = findImage(nameRef)
 
-        updateProfile(user, {
-          displayName: nameRef, photoURL: "https://cdn-icons-png.flaticon.com/128/2173/2173478.png"
-        }).then(() => {
+        updateProfile(
+          user, {
+          displayName: nameRef, photoURL: imageUrl
+        }
+         ).then(() => {
          const{displayName,email,photoURL} = auth.currentUser
          dispatch(addUser({displayName:displayName,email:email,photoURL:photoURL}))
          
         }).catch((error) => {
-          // An error occurred
-          // ...
+          //<ErrorPage/>
         });
         
       })
@@ -91,6 +94,7 @@ const SignUp = () => {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        
         // ...
       })
       .catch((error) => {
@@ -103,10 +107,10 @@ const SignUp = () => {
             
   }
 
-  return (
-    <section className='signin-image hero-container '>
-        <form className=' flex flex-col relative z-[50] gap-y-2 justify-center bg-black opacity-70 px-16 rounded-xl py-10'>
-        <h1 className='text-red-500 font-bold text-3xl'>{signIn?'Sign Up':'Sign In'}</h1>
+  return ( 
+    <section className='signin-image hero-container z-10 '>
+        <form className=' flex flex-col relative z-[50] gap-y-2 justify-center bg-black opacity-70 xl:px-16 md:px-10 lg:px-10 px-5 rounded-xl py-10'>
+        <h1 className='text-red-500 font-bold text-lg xl:text-xl'>{signIn?'Sign Up':'Sign In'}</h1>
           
           {
             signIn === true &&<>
@@ -139,8 +143,8 @@ const SignUp = () => {
             event.preventDefault()
             handleValidation()
           }}
-           className='bg-red-500 px-5 text-white font-poppins py-3  rounded-md trans font-bold transition duration-300 hover:scale-105 hover:bg-red-800 cursor-pointer '>{signIn?'Sign Up':'Sign In'}</button>
-          <p className='text-white text-lg'>{signIn?'Have an account?.':'New user?.'} <strong className='cursor-pointer hover:underline'
+           className='bg-red-500 text-sm px-3  font-poppins py-3  rounded-md  font-bold transition duration-300 hover:scale-105 hover:bg-red-800 cursor-pointer '>{signIn?'Sign Up':'Sign In'}</button>
+          <p className='text-white text-sm xl:text-lg'>{signIn?'Have an account?.':'New user?.'} <strong className='cursor-pointer hover:underline text-sm xl:text-xl text-[#00FFFF]'
 
             onClick={()=>{
               handleSignUpButton();

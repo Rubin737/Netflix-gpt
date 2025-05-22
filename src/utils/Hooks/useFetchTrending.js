@@ -1,13 +1,13 @@
 import { useEffect } from "react"
 import { OPTIONS, TRENDING_MOVIES } from "../constants"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addTrendingMovies } from "../Slices/movieSlice";
 
 export const useFetchTrending = ()=>{
     const dispatch = useDispatch()
-    let isMounted = true;
-
+    const trend = useSelector((store) => store.movie.trendingMovies);
     useEffect(()=>{
+        let isMounted = true;
         const fetchTopRated = async()=>{
             try{
             
@@ -18,8 +18,7 @@ export const useFetchTrending = ()=>{
                 throw new Error('Cant fetch Movies')
             }
             const data = await response.json();
-            console.log(data)
-
+            
             if(isMounted) dispatch(addTrendingMovies(data.results))    
             
             }
@@ -27,10 +26,12 @@ export const useFetchTrending = ()=>{
                 console.log(error)
             }
         }
-        fetchTopRated()
-    },[])
+        if(!trend) fetchTopRated()
+        return ()=> {
+    isMounted = false
+};
+    },[trend,dispatch])
 
 
-    return ()=> isMounted = false
 
 }

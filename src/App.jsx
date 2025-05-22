@@ -9,6 +9,7 @@ import { auth } from './utils/firebase'
 import { addUser, removeUser } from './utils/Slices/userslice'
 import Browse from './Appcomponents/Browse'
 import SearchGPT from './Appcomponents/BrowseComponents/SearchGPT'
+import ErrorPage from './Appcomponents/ErrorPage'
 
 
 const App = () => {
@@ -29,12 +30,12 @@ const App = () => {
       }
     });
    return ()=>unsubscribe()  
-  },[])
+  },[dispatch,navigate])
 
 
   return (
     
-      <section className='px-5 mt-5  relative'>
+      <section className=' mt-0  relative'>
       <Header/>
       <Outlet/>
       </section>
@@ -66,6 +67,7 @@ export const appRouter = createBrowserRouter([
         element:<SearchGPT/>
       },
 
-    ]
+    ],
+    errorElement:<ErrorPage/>
   }
 ])

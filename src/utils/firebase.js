@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import process from "process";
 
 
 
@@ -11,7 +12,7 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyChCSlDfaDjr5BrIytid3ZMTU6cS00uEw8",
+  apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: "netflix-clone-app-react.firebaseapp.com",
   projectId: "netflix-clone-app-react",
   storageBucket: "netflix-clone-app-react.firebasestorage.app",

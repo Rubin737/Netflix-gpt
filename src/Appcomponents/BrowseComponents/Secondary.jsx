@@ -14,19 +14,19 @@ const Secondary = () => {
 
   const topRated = useSelector((store)=>store.movie.topRatedMovies);
   const fav = useSelector((store)=>store.movie.favoriteMovies);
+  console.log(fav)
   const trendingMovies = useSelector((store)=>store.movie.trendingMovies);
-
   const trending = trendingMovies ? shuffleArray([...trendingMovies]) : [];
 
   
   return(
-    <section className='mt-48'>
+    <section className='mt-35 md:mt-18 xl:mt-30'>
       <MovieList title={'Popular Shows'} movie={fav} />
       <MovieList title={'Top Rated'} movie={topRated} />
       <MovieList title={'Trending Now'} movie={trending} />
-      <MovieList title={'Top Rated'} movie={topRated} />
+      <MovieList title={`People's Favourites`} movie={topRated} />
     </section>
    )
 }
 
-export default Secondary
+export default Secondary 

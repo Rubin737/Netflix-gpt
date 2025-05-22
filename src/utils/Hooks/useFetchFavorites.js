@@ -1,13 +1,13 @@
 import { useEffect } from "react"
 import { OPTIONS, FAV_MOVIES } from "../constants"
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFavoriteMovies } from "../Slices/movieSlice";
 
 export const useFetchFavorites = ()=>{
     const dispatch = useDispatch()
-    let isMounted = true;
-
+    const fav = useSelector((store) => store.movie.favoriteMovies);    
     useEffect(()=>{
+        let isMounted = true;
         const fetchTopRated = async()=>{
             try{
             
@@ -26,10 +26,13 @@ export const useFetchFavorites = ()=>{
                 console.log(error)
             }
         }
-        fetchTopRated()
-    },[])
+        if(!fav) fetchTopRated()
+        return()=>{
+            isMounted = false;        
+        }
+    },[dispatch,fav])
 
 
-    return ()=> isMounted = false
+    
 
 }
