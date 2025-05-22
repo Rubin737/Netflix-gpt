@@ -1,15 +1,13 @@
 import { useFetchNowPlay } from '@/utils/Hooks/useFetchNowPlay'
 import React from 'react'
-import MainVedio from '../BrowseComponents/MainVedio';
 import { useSelector } from 'react-redux';
 import { GOOGLE_SEARCH, MOVIE_ICON, PLAY_ICON, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 import { IMG_PATH } from '@/utils/constants';
 import ShimerUi from './ShimerUi';
 import { useState,useEffect } from 'react';
+import TrailerVedio from './TrailerVedio';
 
-
-
-const Main = () => {
+const HeroMain = () => {
   
   useFetchNowPlay();
   
@@ -122,9 +120,9 @@ const Main = () => {
           })}
         </div>
       </div>
-      <MainVedio movieId={mainMovie.id} />
+      <TrailerVedio movieId={mainMovie.id} />
     </section>
   );
 };
 
-export default Main;
+export default HeroMain;

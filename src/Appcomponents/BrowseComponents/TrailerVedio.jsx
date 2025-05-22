@@ -7,7 +7,7 @@ import { youtube } from '@/utils/youtubeConfig';
 import { ALTERNATE_VIDEO_KEY, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 
 
-const MainVedio = ({movieId}) => {
+const TrailerVedio = ({movieId}) => {
   
   useFetchTrailor(movieId);
   
@@ -48,4 +48,4 @@ const MainVedio = ({movieId}) => {
   )
 }
 
-export default MainVedio
+export default TrailerVedio
