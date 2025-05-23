@@ -85,9 +85,9 @@ const HeroMain = () => {
               }
           }
     >
-      <div className=' flex  flex-col z-10 gap-y-2 md:gap-y-5 absolute text-white top-10 left-2   md:top-[15%] lg:top[50%] xl:left-10'>
-        <h1 className='font-bold text-indigo-500 text-sm lg:text-4xl md:text-4xl xl:text-5xl font-poppins'>{mainMovie.title}</h1>
-        <p className='font-bold sm:text-[12px] md:text-lg lg:text-xl xl:text-lg font-poppins '>
+      <div className=' flex  flex-col z-10 gap-y-[6px] md:gap-y-5 absolute text-white top-10 left-2   md:top-[15%] lg:top[50%] xl:left-10'>
+        <h1 className='font-bold text-indigo-500 text-sm w-[250px] md:w-full lg:text-4xl md:text-4xl xl:text-5xl font-poppins'>{mainMovie.title}</h1>
+        <p className='font-bold text-[12px] md:text-lg lg:text-xl xl:text-lg font-poppins '>
           {year} . <strong className='text-slate-400'>{language ? language : mainMovie.original_language}</strong>
         </p>
         <p className='text-[8px] md:text-[14px] lg:text-[14px] xl:text-lg w-[300px] md:w-[500px] lg:w-[500px] xl:w-[50%] font-poppins '>{overView}</p>
