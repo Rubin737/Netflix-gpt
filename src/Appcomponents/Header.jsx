@@ -68,7 +68,7 @@ const handleHamburgerMenu = ()=>{
             <h1 className='button-style'
             onClick={()=>handleHideProfile()}
             >{languagesList[languageKey].signIn}</h1>
-            
+            <SelectLanguage/>
              </div>
              }
         
