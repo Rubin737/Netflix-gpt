@@ -7,7 +7,8 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './utils/firebase'
 import { addUser, removeUser } from './utils/Slices/userslice'
 import ErrorPage from './Appcomponents/ErrorPage'
-import ShimerUi from './Appcomponents/BrowseComponents/ShimerUi'
+import ShimerSignup from './Appcomponents/shimmerCOmponets/ShimerSignup'
+import ShimmerBrowse from './Appcomponents/shimmerCOmponets/ShimmerBrowse'
 
 const Browse = lazy(()=>import('./Appcomponents/Browse'));
 const SignUp = lazy(()=>import('./Appcomponents/SignUp'));
@@ -58,15 +59,15 @@ export const appRouter = createBrowserRouter([
       },
       {
         path:'/signup',
-        element:<Suspense fallback={<ShimerUi/>}><SignUp/></Suspense>
+        element:<Suspense fallback={<ShimerSignup/>}><SignUp/></Suspense>
       },
       {
         path:'/browse',
-        element:<Suspense fallback={<ShimerUi/>}><Browse/></Suspense>
+        element:<Suspense fallback={<ShimmerBrowse/>}><Browse/></Suspense>
       },
       {
         path:'/searchmovies',
-        element:<Suspense fallback={<ShimerUi />}><SearchGPT /></Suspense>
+        element:<Suspense fallback={<ShimmerBrowse/>}><SearchGPT /></Suspense>
       },
 
     ],

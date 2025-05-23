@@ -3,9 +3,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { GOOGLE_SEARCH, MOVIE_ICON, PLAY_ICON, YOUTUBE_VIDEO_URL } from '@/utils/constants';
 import { IMG_PATH } from '@/utils/constants';
-import ShimerUi from './ShimerUi';
 import { useState,useEffect } from 'react';
 import TrailerVedio from './TrailerVedio';
+import ShimmerBrowse from '../shimmerCOmponets/ShimmerBrowse';
 
 const HeroMain = () => {
   
@@ -55,7 +55,7 @@ const HeroMain = () => {
   }
  
   
-  if (!movies) return <ShimerUi/>;
+  if (!movies) return <ShimmerBrowse/>;
 
   const cards = movies.slice(1,6);
   const mainMovie = cards[change];

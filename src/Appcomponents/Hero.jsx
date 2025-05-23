@@ -25,8 +25,6 @@ const Hero = () => {
       navigate('/error')
     }
      
-    
-    
   }
 
   return  (
@@ -41,7 +39,6 @@ const Hero = () => {
           </div>     
           
       </div>
-      <h1>Trending Now</h1>
 
     </section>
   )
