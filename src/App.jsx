@@ -14,7 +14,6 @@ const Browse = lazy(()=>import('./Appcomponents/Browse'));
 const SignUp = lazy(()=>import('./Appcomponents/SignUp'));
 const SearchGPT = lazy(()=>import('./Appcomponents/BrowseComponents/SearchGPT'))
 
-
 const App = () => {
   const navigate = useNavigate(); 
   const dispatch = useDispatch();
